@@ -17,13 +17,10 @@ import java.time.Duration;
 
 import org.junit.Assert;
 
-public class StepDef {
+/*Child Class of Base Class*/
+public class StepDef extends BaseClass{
 
-	public WebDriver driver;
-	public LoginPage loginpg;
-	public SearchCustomerPage SearchCustPg;
-	public AddNewCustomerPage addNewCustPg;
-
+	
 	@Given("User Launch Chrome browser")
 	public void user_launch_chrome_browser() {
 
@@ -134,8 +131,8 @@ public class StepDef {
 
 	@When("User enter customer info")
 	public void user_enter_customer_info() {
-		 addNewCustPg.enterEmail("gp89@gmail.com");
-		//addNewCustPg.enterEmail(generateEmailId() + "@gmail.com");
+		// addNewCustPg.enterEmail("gp89@gmail.com");
+		addNewCustPg.enterEmail(generateEmailId() + "@gmail.com");
 		addNewCustPg.enterPassword("test1");
 		addNewCustPg.enterFirstName("Prachi");
 		addNewCustPg.enterLastName("Gupta");

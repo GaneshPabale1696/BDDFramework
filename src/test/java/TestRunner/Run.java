@@ -4,10 +4,12 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-		features = ".//Features/Customer.feature",
+		features = { ".//Features/Customer.feature",".//Features/LoginFeature.feature"},
+		//features = ".//Features/",
 		glue = "StepDefination",
 		dryRun=false,
 		monochrome = true,
+		tags="@Sanity and @regression",//Scenarios under @sanity tag will be executed 
 		plugin= {"pretty","html:Cucumber-reports/reports1.html"}
 		)
 

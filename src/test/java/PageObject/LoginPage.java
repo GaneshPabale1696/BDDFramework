@@ -37,10 +37,24 @@ public class LoginPage {
 	public void enterPassword(String pwd) {
 		pass.clear();
 		pass.sendKeys(pwd);
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void clickonloginbutton() {
 		login.click();
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void clickonlogoutbutton() {
