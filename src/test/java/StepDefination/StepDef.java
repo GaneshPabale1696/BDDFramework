@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import PageObject.AddNewCustomerPage;
 import PageObject.LoginPage;
+import PageObject.SearchCustomerPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,6 +21,7 @@ public class StepDef {
 
 	public WebDriver driver;
 	public LoginPage loginpg;
+	public SearchCustomerPage SearchCustPg;
 	public AddNewCustomerPage addNewCustPg;
 
 	@Given("User Launch Chrome browser")
@@ -37,6 +39,7 @@ public class StepDef {
 
 		loginpg = new LoginPage(driver);
 		addNewCustPg = new AddNewCustomerPage(driver);
+		SearchCustPg=new SearchCustomerPage(driver);
 
 	}
 
@@ -131,7 +134,7 @@ public class StepDef {
 
 	@When("User enter customer info")
 	public void user_enter_customer_info() {
-		 addNewCustPg.enterEmail("cs129@gmail.com");
+		 addNewCustPg.enterEmail("gp89@gmail.com");
 		//addNewCustPg.enterEmail(generateEmailId() + "@gmail.com");
 		addNewCustPg.enterPassword("test1");
 		addNewCustPg.enterFirstName("Prachi");
@@ -147,6 +150,13 @@ public class StepDef {
 	@When("click on Save button")
 	public void click_on_save_button() {
 		addNewCustPg.clickOnSave();
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Then("User can view confirmation message {string}")
@@ -163,5 +173,75 @@ public class StepDef {
 		}
 		
 	}
+	
+	///////////////////////////Search Customer Steps//////////////////////////////
+	@When("Enter customer EMail")
+	public void enter_customer_e_mail() {	    
+		SearchCustPg.enterEmailAdd("victoria_victoria@nopCommerce.com");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@When("Click on search button")
+	public void click_on_search_button() {
+		SearchCustPg.clickOnSearchButton();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Then("User should found Email in the Search table")
+	public void user_should_found_email_in_the_search_table() {
+	    
+		String expectedEmail="victoria_victoria@nopCommerce.com";
+		
+		//Assert.assertTrue(SearchCustPg.searchCustomerByEmail(expectedEmail));
+		
+		  if(SearchCustPg.searchCustomerByEmail(expectedEmail)==true) 
+		  {
+		  Assert.assertTrue(true); 
+		  } else 
+		  { 
+			  Assert.assertTrue(false); 
+		  }	 
+		
+	}
+
+	/////// Search Customer By Name ///////////
+	
+	@When("Enter customer FirstName")
+	public void enter_customer_first_name() {
+		SearchCustPg.enterFirstName("Victoria");
+	}
+
+	@When("Enter customer LastName")
+	public void enter_customer_last_name() {
+		SearchCustPg.enterLastName("Terces");
+	}
+
+	@Then("User should found Name in the Search table")
+	public void user_should_found_name_in_the_search_table() {
+	    
+		String expectedName="Victoria Terces";
+		
+		  if(SearchCustPg.searchCustomerByName(expectedName)==true) 
+		  {
+		  Assert.assertTrue(true); 
+		  } else 
+		  { 
+			  Assert.assertTrue(false); 
+		  }	 
+		
+		
+	}
+	
 
 }
