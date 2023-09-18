@@ -28,7 +28,7 @@ Feature: Customers
     Then User should found Email in the Search table
     And close browser
 
- @Sanity
+ @regression
  Scenario: Search Customer by Name
   When User click on customers Menu
   And click on customers Menu Item
