@@ -6,10 +6,14 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import PageObject.AddNewCustomerPage;
 import PageObject.LoginPage;
 import PageObject.SearchCustomerPage;
+import Utilities.ReadConfig;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
@@ -21,8 +25,11 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 import java.util.logging.LogManager;
 
 import org.apache.commons.io.FileUtils;
@@ -33,28 +40,53 @@ public class StepDef extends BaseClass {
 
 	@Before("@Sanity")
 	public void setup1() {
-		
-		log=org.apache.logging.log4j.LogManager.getLogger("StepDef");
-				
+
+		readConfig = new ReadConfig();
+
+		// initialize logger
+		log = org.apache.logging.log4j.LogManager.getLogger("StepDef");
+
 		System.out.println("Setup-sanity Method Executed");
-		
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions ops = new ChromeOptions();
-		ops.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver(ops);
+
+		String browser = readConfig.getBrowser();
+
+		switch (browser.toLowerCase()) {
+
+		case "chrome":
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions ops = new ChromeOptions();
+			ops.addArguments("--remote-allow-origins=*");
+			driver = new ChromeDriver(ops);
+			break;
+
+		case "msedge":
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
+			break;
+
+		case "firefox":
+			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions ops1=new FirefoxOptions();
+			ops1.addArguments("--remote-allow-origins=*");
+			driver = new FirefoxDriver();
+			break;
+		default:
+			driver = null;
+			break;
+
+		}
+
 		log.fatal("Setup1 Executed....");
-		
 	}
-	
-	/*@Before("@regression")
-	public void setup2() {
-		System.out.println("Setup-regression Method Executed");
-		
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions ops = new ChromeOptions();
-		ops.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver(ops);
-	}*/
+
+	/*
+	 * @Before("@regression") public void setup2() {
+	 * System.out.println("Setup-regression Method Executed");
+	 * 
+	 * WebDriverManager.chromedriver().setup(); ChromeOptions ops = new
+	 * ChromeOptions(); ops.addArguments("--remote-allow-origins=*"); driver = new
+	 * ChromeDriver(ops); }
+	 */
 
 	@Given("User Launch Chrome browser")
 	public void user_launch_chrome_browser() {
@@ -85,7 +117,7 @@ public class StepDef extends BaseClass {
 		loginpg.enterEmail(emailadd);
 		loginpg.enterPassword(password);
 		log.info("email address and password entered");
-		
+
 	}
 
 	@When("Click on Login")
@@ -152,7 +184,7 @@ public class StepDef extends BaseClass {
 		addNewCustPg.clickOnCustomersMenuItem();
 		log.info("Customer Menu Item clicked");
 		Thread.sleep(2000);
-		
+
 	}
 
 	@When("click on Add new button")
@@ -190,7 +222,7 @@ public class StepDef extends BaseClass {
 		addNewCustPg.enterCompanyName("CodeStudio");
 		addNewCustPg.enterAdminContent("Admin content");
 		addNewCustPg.enterManagerOfVendor("Vendor 1");
-		
+
 		log.info("Customer information entered..");
 
 	}
@@ -289,25 +321,23 @@ public class StepDef extends BaseClass {
 		}
 
 	}
-	
+
 	@After
-	public void tearDown(Scenario sc)
-	{
+	public void tearDown(Scenario sc) {
 		System.out.println("Tear Down Method Executed");
-		if(sc.isFailed()==true)
-		{
-			//Convert web driver object to TakeScreenshot
+		if (sc.isFailed() == true) {
+			// Convert web driver object to TakeScreenshot
 
 			String fileWithPath = "F:\\Projects\\my projects\\BDDFramework-master\\BDDFramework-master\\Screenshots\\failedScreenshot.png";
-			TakesScreenshot scrShot =((TakesScreenshot)driver);
+			TakesScreenshot scrShot = ((TakesScreenshot) driver);
 
-			//Call getScreenshotAs method to create image file
-			File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+			// Call getScreenshotAs method to create image file
+			File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
 
-			//Move image file to new destination
-			File DestFile=new File(fileWithPath);
+			// Move image file to new destination
+			File DestFile = new File(fileWithPath);
 
-			//Copy file at destination
+			// Copy file at destination
 
 			try {
 				FileUtils.copyFile(SrcFile, DestFile);
@@ -318,25 +348,19 @@ public class StepDef extends BaseClass {
 		}
 		driver.quit();
 	}
-	
-	/*@After
-	public void tearDown2()
-	{
-		System.out.println("Tear Down Method Executed");
-		driver.quit();
-	}*/
-	
-	/* @BeforeStep
-	public void beforeStepMethodDemo()
-	{
-		System.out.println("This is Before step...");
-	}
-	
-	
-	@AfterStep
-	public void afterStepMethodDemo()
-	{
-		System.out.println("This is after step...");
-	} */
+
+	/*
+	 * @After public void tearDown2() {
+	 * System.out.println("Tear Down Method Executed"); driver.quit(); }
+	 */
+
+	/*
+	 * @BeforeStep public void beforeStepMethodDemo() {
+	 * System.out.println("This is Before step..."); }
+	 * 
+	 * 
+	 * @AfterStep public void afterStepMethodDemo() {
+	 * System.out.println("This is after step..."); }
+	 */
 
 }
