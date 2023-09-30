@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-09-18T21:49:56 IST" name="Default suite" finished-at="2023-09-18T21:50:30 IST" duration-ms="34566">
+  <suite started-at="2023-09-30T22:04:32 IST" name="Default suite" finished-at="2023-09-30T22:05:03 IST" duration-ms="31156">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:TestRunner.Run@673fdbce]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2023-09-18T21:49:56 IST" name="Default test" finished-at="2023-09-18T21:50:30 IST" duration-ms="34566">
+    <test started-at="2023-09-30T22:04:32 IST" name="Default test" finished-at="2023-09-30T22:05:03 IST" duration-ms="31156">
       <class name="TestRunner.Run">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:TestRunner.Run@673fdbce]" started-at="2023-09-18T21:49:56 IST" name="setUpClass" finished-at="2023-09-18T21:49:57 IST" duration-ms="1553" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:TestRunner.Run@673fdbce]" started-at="2023-09-30T22:04:32 IST" name="setUpClass" finished-at="2023-09-30T22:04:34 IST" duration-ms="1580" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@7a31ca20]]>
+                <![CDATA[org.testng.TestRunner@c14e5a5]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:TestRunner.Run@673fdbce]" started-at="2023-09-18T21:49:57 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-18T21:50:30 IST" duration-ms="32587" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:TestRunner.Run@673fdbce]" started-at="2023-09-30T22:04:34 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-30T22:05:03 IST" duration-ms="29339" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -34,21 +34,10 @@
               </value>
             </param>
           </params>
-          <exception class="java.lang.AssertionError">
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError
-at org.junit.Assert.fail(Assert.java:86)
-at org.junit.Assert.assertTrue(Assert.java:41)
-at org.junit.Assert.assertTrue(Assert.java:52)
-at StepDefination.StepDef.page_title_should_be(StepDef.java:93)
-at ✽.Page Title should be "Your store. Login1"(file:///F:/Projects/my%20projects/BDDFramework-master/BDDFramework-master/./Features/LoginFeature.feature:11)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Run@673fdbce]" started-at="2023-09-18T21:50:30 IST" name="tearDownClass" finished-at="2023-09-18T21:50:30 IST" duration-ms="176" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Run@673fdbce]" started-at="2023-09-30T22:05:03 IST" name="tearDownClass" finished-at="2023-09-30T22:05:03 IST" duration-ms="96" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->

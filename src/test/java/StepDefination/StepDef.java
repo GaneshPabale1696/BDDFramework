@@ -23,6 +23,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.logging.LogManager;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
@@ -32,12 +33,17 @@ public class StepDef extends BaseClass {
 
 	@Before("@Sanity")
 	public void setup1() {
+		
+		log=org.apache.logging.log4j.LogManager.getLogger("StepDef");
+				
 		System.out.println("Setup-sanity Method Executed");
 		
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions ops = new ChromeOptions();
 		ops.addArguments("--remote-allow-origins=*");
 		driver = new ChromeDriver(ops);
+		log.fatal("Setup1 Executed....");
+		
 	}
 	
 	/*@Before("@regression")
@@ -61,6 +67,7 @@ public class StepDef extends BaseClass {
 		loginpg = new LoginPage(driver);
 		addNewCustPg = new AddNewCustomerPage(driver);
 		SearchCustPg = new SearchCustomerPage(driver);
+		log.info("User launch chrome browser....");
 
 	}
 
@@ -69,6 +76,7 @@ public class StepDef extends BaseClass {
 
 		driver.get(url);
 
+		log.info("URL is opened");
 	}
 
 	@When("User enters Email as {string} and Password as {string}")
@@ -76,11 +84,14 @@ public class StepDef extends BaseClass {
 
 		loginpg.enterEmail(emailadd);
 		loginpg.enterPassword(password);
+		log.info("email address and password entered");
+		
 	}
 
 	@When("Click on Login")
 	public void click_on_login() {
 		loginpg.clickonloginbutton();
+		log.info("Login button clicked..");
 	}
 
 	@Then("Page Title should be {string}")
@@ -88,8 +99,10 @@ public class StepDef extends BaseClass {
 
 		String actualTitle = driver.getTitle();
 		if (actualTitle.equals(expected)) {
+			log.info("Test Passed:Login Feature:Page title matched.");
 			Assert.assertTrue(true);// pass
 		} else {
+			log.warn("Test failed:Login Feature:Page title not matched.");
 			Assert.assertTrue(false);// fail
 		}
 	}
@@ -98,13 +111,14 @@ public class StepDef extends BaseClass {
 	public void user_click_on_log_out_link() {
 		loginpg.clickonlogoutbutton();
 
+		log.info("user clicked on logout link.");
 	}
 
 	@Then("close browser")
 	public void close_browser() {
 
 		driver.close();
-		//driver.quit();
+		log.warn("Browser closed");
 
 	}
 
@@ -117,26 +131,35 @@ public class StepDef extends BaseClass {
 		String expectedTitle = "Dashboard / nopCommerce administration";
 
 		if (actualTitle.equals(expectedTitle)) {
+			log.info("user can view dashboard test passed.");
 			Assert.assertTrue(true);
 		} else {
+			log.warn("user can view dashboard test failed.");
 			Assert.assertTrue(false);
 		}
 
 	}
 
 	@When("User click on customers Menu")
-	public void user_click_on_customers_menu() {
+	public void user_click_on_customers_menu() throws InterruptedException {
 		addNewCustPg.clickOnCustomersMenu();
+		log.info("Customer Menu clicked");
+		Thread.sleep(2000);
 	}
 
 	@When("click on customers Menu Item")
-	public void click_on_customers_menu_item() {
+	public void click_on_customers_menu_item() throws InterruptedException {
 		addNewCustPg.clickOnCustomersMenuItem();
+		log.info("Customer Menu Item clicked");
+		Thread.sleep(2000);
+		
 	}
 
 	@When("click on Add new button")
-	public void click_on_add_new_button() {
+	public void click_on_add_new_button() throws InterruptedException {
 		addNewCustPg.clickOnAddnew();
+		log.info("Clicked on add new button");
+		Thread.sleep(2000);
 	}
 
 	@Then("User can view Add new customer page")
@@ -146,8 +169,10 @@ public class StepDef extends BaseClass {
 		String expectedTitle = "Add a new customer / nopCommerce administration";
 
 		if (actualTitle.equals(expectedTitle)) {
+			log.info("User can view Add new customer page-passed");
 			Assert.assertTrue(true);// pass
 		} else {
+			log.warn("User can view Add new customer page-failed");
 			Assert.assertTrue(false);// fail
 		}
 
@@ -165,6 +190,8 @@ public class StepDef extends BaseClass {
 		addNewCustPg.enterCompanyName("CodeStudio");
 		addNewCustPg.enterAdminContent("Admin content");
 		addNewCustPg.enterManagerOfVendor("Vendor 1");
+		
+		log.info("Customer information entered..");
 
 	}
 
@@ -172,6 +199,7 @@ public class StepDef extends BaseClass {
 	public void click_on_save_button() {
 		addNewCustPg.clickOnSave();
 
+		log.info("Clicked on save button..");
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -186,7 +214,9 @@ public class StepDef extends BaseClass {
 		String bodyTagText = driver.findElement(By.tagName("Body")).getText();
 		if (bodyTagText.contains(exptectedConfirmationMsg)) {
 			Assert.assertTrue(true);// pass
+			log.info("User can view confirmation message-passed");
 		} else {
+			log.warn("User can view confirmation message-failed");
 			Assert.assertTrue(false);// fail
 		}
 
@@ -196,6 +226,7 @@ public class StepDef extends BaseClass {
 	@When("Enter customer EMail")
 	public void enter_customer_e_mail() {
 		SearchCustPg.enterEmailAdd("victoria_victoria@nopCommerce.com");
+		log.info("Emailed address entered");
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -207,6 +238,7 @@ public class StepDef extends BaseClass {
 	@When("Click on search button")
 	public void click_on_search_button() {
 		SearchCustPg.clickOnSearchButton();
+		log.info("Click on search button.");
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -224,8 +256,10 @@ public class StepDef extends BaseClass {
 		// Assert.assertTrue(SearchCustPg.searchCustomerByEmail(expectedEmail));
 
 		if (SearchCustPg.searchCustomerByEmail(expectedEmail) == true) {
+			log.info("User should found Email in the Search table-passed");
 			Assert.assertTrue(true);
 		} else {
+			log.warn("User should found Email in the Search table-failed");
 			Assert.assertTrue(false);
 		}
 
