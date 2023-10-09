@@ -38,6 +38,8 @@ import org.junit.Assert;
 /*Child Class of Base Class*/
 public class StepDef extends BaseClass {
 
+	
+	
 	@Before("@Sanity")
 	public void setup1() {
 
@@ -56,7 +58,7 @@ public class StepDef extends BaseClass {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions ops = new ChromeOptions();
 			ops.addArguments("--remote-allow-origins=*");
-			driver = new ChromeDriver(ops);
+		    driver = new ChromeDriver(ops);
 			break;
 
 		case "msedge":
@@ -91,9 +93,11 @@ public class StepDef extends BaseClass {
 	@Given("User Launch Chrome browser")
 	public void user_launch_chrome_browser() {
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		setup1();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(120));
 		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(120));
 		driver.manage().window().maximize();
 
 		loginpg = new LoginPage(driver);
@@ -130,6 +134,7 @@ public class StepDef extends BaseClass {
 	public void page_title_should_be(String expected) {
 
 		String actualTitle = driver.getTitle();
+		System.out.println("Dashboard title is:"+actualTitle);
 		if (actualTitle.equals(expected)) {
 			log.info("Test Passed:Login Feature:Page title matched.");
 			Assert.assertTrue(true);// pass
