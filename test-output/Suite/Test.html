@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>5/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Oct 09 21:46:35 IST 2023</td>
+<td>Started on:</td><td>Thu Oct 12 18:04:23 IST 2023</td>
 </tr>
-<tr><td>Total time:</td><td>230 seconds (230226 ms)</td>
+<tr><td>Total time:</td><td>263 seconds (263305 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,57 +76,50 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='TestRunner.Run.runScenario()'><b>runScenario</b><br>Test class: TestRunner.Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Successful Login with Valid Credentials DDT", "Login"</td>
-<td><div><pre>java.lang.AssertionError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at StepDefination.StepDef.page_title_should_be(StepDef.java:142)
-	at ✽.Page Title should be &quot;Dashboard / nopCommerce administration&quot;(file:///F:/Projects/my%20projects/BDDFramework-master/BDDFramework-master/./Features/LoginFeature.feature:20)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1910085426", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1910085426'><pre>java.lang.AssertionError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at StepDefination.StepDef.page_title_should_be(StepDef.java:142)
-	at ✽.Page Title should be &quot;Dashboard / nopCommerce administration&quot;(file:///F:/Projects/my%20projects/BDDFramework-master/BDDFramework-master/./Features/LoginFeature.feature:20)
-</pre></div></td>
-<td>20</td>
-<td>TestRunner.Run@673fdbce</td></tr>
-</table><p>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
-<tr><td><b>Test method</b></td>
-<td><b>Attribute(s)</b></td>
-<td width="30%"><b>Exception</b></td>
-<td width="10%"><b>Time (seconds)</b></td>
-<td><b>Instance</b></td>
-</tr>
-<tr>
-<td title='TestRunner.Run.runScenario()'><b>runScenario</b><br>Test class: TestRunner.Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Add New Customer", "Customers"</td>
-<td></td>
-<td>55</td>
-<td>TestRunner.Run@673fdbce</td></tr>
-<tr>
-<td title='TestRunner.Run.runScenario()'><b>runScenario</b><br>Test class: TestRunner.Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Search Customer by Name", "Customers"</td>
-<td></td>
-<td>38</td>
-<td>TestRunner.Run@673fdbce</td></tr>
-<tr>
 <td title='TestRunner.Run.runScenario()'><b>runScenario</b><br>Test class: TestRunner.Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Successful Login with Valid Credentials", "Login"</td>
-<td></td>
-<td>27</td>
-<td>TestRunner.Run@673fdbce</td></tr>
-<tr>
-<td title='TestRunner.Run.runScenario()'><b>runScenario</b><br>Test class: TestRunner.Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Search Customer by Email", "Customers"</td>
-<td></td>
-<td>45</td>
-<td>TestRunner.Run@673fdbce</td></tr>
-<tr>
-<td title='TestRunner.Run.runScenario()'><b>runScenario</b><br>Test class: TestRunner.Run<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Successful Login with Valid Credentials DDT", "Login"</td>
-<td></td>
-<td>39</td>
-<td>TestRunner.Run@673fdbce</td></tr>
+<td><div><pre>org.openqa.selenium.NoSuchSessionException: invalid session id
+Build info: version: &apos;4.11.0&apos;, revision: &apos;040bc5406b&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;20.0.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [3c979059bf4738ea2194764615d976f8, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 118.0.5993.70, chrome: {chromedriverVersion: 118.0.5993.70 (e52f33f30b91..., userDataDir: C:\Users\Ganesh\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58647}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58647/devtoo..., se:cdpVersion: 118.0.5993.70, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 3c979059bf4738ea2194764615d976f8
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:591)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
+	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:321)
+	at StepDefination.StepDef.addScreenshot(StepDef.java:359)
+... Removed 3 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1467981309", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1467981309'><pre>org.openqa.selenium.NoSuchSessionException: invalid session id
+Build info: version: &apos;4.11.0&apos;, revision: &apos;040bc5406b&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;20.0.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [3c979059bf4738ea2194764615d976f8, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 118.0.5993.70, chrome: {chromedriverVersion: 118.0.5993.70 (e52f33f30b91..., userDataDir: C:\Users\Ganesh\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58647}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58647/devtoo..., se:cdpVersion: 118.0.5993.70, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 3c979059bf4738ea2194764615d976f8
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:591)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
+	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:321)
+	at StepDefination.StepDef.addScreenshot(StepDef.java:359)
+</pre></div></td>
+<td>258</td>
+<td>TestRunner.Run@50378a4</td></tr>
 </table><p>
 </body>
 </html>

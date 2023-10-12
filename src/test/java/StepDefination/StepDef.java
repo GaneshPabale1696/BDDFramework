@@ -38,8 +38,6 @@ import org.junit.Assert;
 /*Child Class of Base Class*/
 public class StepDef extends BaseClass {
 
-	
-	
 	@Before("@Sanity")
 	public void setup1() {
 
@@ -58,7 +56,7 @@ public class StepDef extends BaseClass {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions ops = new ChromeOptions();
 			ops.addArguments("--remote-allow-origins=*");
-		    driver = new ChromeDriver(ops);
+			driver = new ChromeDriver(ops);
 			break;
 
 		case "msedge":
@@ -68,7 +66,7 @@ public class StepDef extends BaseClass {
 
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
-			FirefoxOptions ops1=new FirefoxOptions();
+			FirefoxOptions ops1 = new FirefoxOptions();
 			ops1.addArguments("--remote-allow-origins=*");
 			driver = new FirefoxDriver();
 			break;
@@ -94,7 +92,7 @@ public class StepDef extends BaseClass {
 	public void user_launch_chrome_browser() {
 
 		setup1();
-		
+
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(120));
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(120));
@@ -134,7 +132,7 @@ public class StepDef extends BaseClass {
 	public void page_title_should_be(String expected) {
 
 		String actualTitle = driver.getTitle();
-		System.out.println("Dashboard title is:"+actualTitle);
+		System.out.println("Dashboard title is:" + actualTitle);
 		if (actualTitle.equals(expected)) {
 			log.info("Test Passed:Login Feature:Page title matched.");
 			Assert.assertTrue(true);// pass
@@ -151,13 +149,13 @@ public class StepDef extends BaseClass {
 		log.info("user clicked on logout link.");
 	}
 
-	@Then("close browser")
-	public void close_browser() {
-
-		driver.close();
-		log.warn("Browser closed");
-
-	}
+	/*
+	 * @Then("close browser") public void close_browser() {
+	 * 
+	 * driver.close(); log.warn("Browser closed");
+	 * 
+	 * }
+	 */
 
 	//////// Add New Customers/////////////////////////////////////////
 
@@ -327,7 +325,7 @@ public class StepDef extends BaseClass {
 
 	}
 
-	@After
+	// @After
 	public void tearDown(Scenario sc) {
 		System.out.println("Tear Down Method Executed");
 		if (sc.isFailed() == true) {
@@ -352,6 +350,16 @@ public class StepDef extends BaseClass {
 			}
 		}
 		driver.quit();
+	}
+
+	@AfterStep
+	public void addScreenshot(Scenario scenario) {
+		if(scenario.isFailed())
+		 {
+		final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		//attach image file report(data,media type,name of the attachment)
+		scenario.attach(screenshot,"image/png", scenario.getName());
+		 }
 	}
 
 	/*

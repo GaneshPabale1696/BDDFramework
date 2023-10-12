@@ -9,8 +9,9 @@ import io.cucumber.testng.CucumberOptions;
 		glue = "StepDefination",
 		dryRun=false,
 		monochrome = true,
-		//tags="@Sanity", //and @regression",//Scenarios under @sanity tag will be executed 
-		plugin= {"pretty","html:Cucumber-reports/reports1.html"}
+		tags="@Sanity",//Scenarios under @sanity tag will be executed 
+	//	plugin= {"pretty","html:Cucumber-reports/reports1.html"}
+		plugin = { "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 		)
 
 //plugin= {"pretty","json:Cucumber-reports/reports_json.json"}
